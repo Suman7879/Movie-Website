@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-Website</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/ab577d774b.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <video src="video/harry.mp4" autoplay muted></video>
+        <nav>
+            <div class="logo">
+                <img src="img/logo1.png" alt="Movie">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#" id="series">Web-Series</a></li>
+                    <li><a href="#" id="movies">Movies</a></li>
+                    <li><a href="#">Kids</a></li>
+                </ul>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search" id="search_input">
+                <img src="img/ima.jpg" alt="">
+                <div class="search2">
+                    <!-- <a href="#" class="card">
+                        <img src="img/ima.jpg" alt="">
+                        <div class="content">
+                            <h3>RRR</h3>
+                            <p>Action 2022, <span>IMDB</span><i class="fa-solid fa-star"></i>9.6</p>
+                        </div>
+                    </a> -->
+                </div>
+            </div>
+        </nav>
+
+        <div class="cont">
+            <h1 id="title">Harry Potter</h1>
+            <p>Harry Potter is a series of seven fantasy novels written by British author J. K. Rowling. The novels
+                chronicle the lives of a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley,
+                all of whom are students at Hogwarts School of Witchcraft and Wizardry.</p>
+            <div class="details">
+                <h6>Amazon Prime Video</h6>
+                <h5 id="gen">Wizered Movie</h5>
+                <h4 id="date">2001</h4>
+                <h3 id="rate"><span>IMBD</span><i class="fa-solid fa-star"></i>9.8</h3>
+            </div>
+            <div class="btn">
+                <a href="#" id="play">Watch<i class="fa-solid fa-circle-play"></i></a>
+                <a href="#" download ="They Shall Not Grow Old 480p " id="low">480p</a>
+                <a href="#" download ="They Shall Not Grow Old 720p" id="medium">720p</a>
+                <a href="#" download ="They Shall Not Grow Old 1080p" id="high">1080p</a>
+            </div>
+        </div>
+        <section>
+            <h4>Trending</h4>
+           
+            <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-sharp fa-solid fa-arrow-right"></i>
+            <div class="cards">
+                <!-- <a href="#" class="card">
+                    <img src="img/i.jpg" alt="" class="poster">
+                    <div class="restcard">
+                        <img src="img/ima.jpg" alt="">
+                        <div class="contt">
+                            <h4>Harry Potter</h4>
+                            <div class="sub">
+                                <p>Action 2001</p>
+                                <h3><span>IMBD</span><i class="fa-solid fa-star"></i>9.6</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a> -->
+
+            </div>
+        </section>
+    </header>
+
+
+
+    <script src="script.js"></script>
+
+    <script>
+        fetch(json_url).then((Response) =>Response.json())
+            .then(data => {
+                let movie_array = data.filter(ele => {
+                    return ele.Title === "OMG-2";
+                })
+
+                document.getElementById('title').innerText = movie_array[0].Title;
+                document.getElementsByTagName('video')[0].setAttribute('src', movie_array[0].trailer)
+                document.getElementsByTagName('video')[0].play();
+                document.getElementById('low').href = movie_array[0].low;
+                document.getElementById('medium').href = movie_array[0].medium;
+                document.getElementById('high').href = movie_array[0].high;
+                document.getElementById('date').innerText = movie_array[0].Year;
+                document.getElementById('rate').innerHTML = `<span>IMDB</span><i class="fa-solid fa-star"></i>${movie_array[0].imdbRating}`;
+
+            })
+       </script>
+</body>
+
+</html>
